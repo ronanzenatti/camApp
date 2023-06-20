@@ -8,8 +8,8 @@ import { FaceClient } from "@azure/cognitiveservices-face";
 })
 export class AiService {
 
-  private APIKEY = '8eb4830e2c1e4cceb125f1154c639018';
-  private ENDPOINT = 'https://ai-ionic.cognitiveservices.azure.com/';
+  private APIKEY = '1a0909f5cd1344d2be080f301947695c';
+  private ENDPOINT = 'https://camapp-ronan.cognitiveservices.azure.com/';
 
   constructor() { }
 

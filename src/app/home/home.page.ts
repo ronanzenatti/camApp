@@ -19,7 +19,7 @@ export class HomePage {
     public aiService: AiService,
     private loadingController: LoadingController,
     public modalController: ModalController
-  ) { }
+  ) {}
 
   async ngOnInit() {
     await this.fotoService.carregarFotosSalvas();
@@ -34,22 +34,21 @@ export class HomePage {
           icon: 'eye',
           handler: () => {
             this.detalhesImagem(foto);
-
-          }
+          },
         },
         {
           text: 'Objetos na Imagem',
           icon: 'pricetags',
           handler: () => {
             this.tagsImagem(foto);
-          }
+          },
         },
         {
           text: 'Análise facial',
           icon: 'person-circle',
           handler: () => {
             this.deteccaoFacial(foto);
-          }
+          },
         },
         {
           text: 'Delete',
@@ -57,15 +56,17 @@ export class HomePage {
           icon: 'trash',
           handler: () => {
             this.fotoService.deletePicture(foto, position);
-          }
-        }, {
+          },
+        },
+        {
           text: 'Cancelar',
           icon: 'close',
           role: 'cancel',
           handler: () => {
             // Nothing to do, action sheet is automatically closed
-          }
-        }]
+          },
+        },
+      ],
     });
     await actionSheet.present();
   }
@@ -76,7 +77,9 @@ export class HomePage {
     });
     await loading.present();
 
-    const detalhes = await this.aiService.descreverImagem(await this.fotoService.getBlob(foto));
+    const detalhes = await this.aiService.descreverImagem(
+      await this.fotoService.getBlob(foto)
+    );
 
     console.log(detalhes);
     await loading.dismiss();
@@ -90,7 +93,9 @@ export class HomePage {
     });
     await loading.present();
 
-    const tags = await this.aiService.tagsImagem(await this.fotoService.getBlob(foto));
+    const tags = await this.aiService.tagsImagem(
+      await this.fotoService.getBlob(foto)
+    );
     console.log(tags);
     await loading.dismiss();
     this.abrirModal(ModalPage, tags);
@@ -102,7 +107,9 @@ export class HomePage {
     });
     await loading.present();
 
-    const faces = await this.aiService.deteccaoFacial(await this.fotoService.getBlob(foto));
+    const faces = await this.aiService.deteccaoFacial(
+      await this.fotoService.getBlob(foto)
+    );
     console.log(faces);
     await loading.dismiss();
     this.abrirModal(FaceModalPage, faces);
@@ -115,5 +122,4 @@ export class HomePage {
     });
     return await modal.present();
   }
-
 }
