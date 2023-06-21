@@ -77,9 +77,7 @@ export class HomePage {
     });
     await loading.present();
 
-    const detalhes = await this.aiService.descreverImagem(
-      await this.fotoService.getBlob(foto)
-    );
+    const detalhes = await this.aiService.descreverImagem( await this.fotoService.getBlob(foto) );
 
     console.log(detalhes);
     await loading.dismiss();
